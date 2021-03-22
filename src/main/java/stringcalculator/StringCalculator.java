@@ -3,11 +3,21 @@ package stringcalculator;
 public class StringCalculator {
 
 
-    public int add(String s) {
+    public int add(String input) {
 
-        if(s.length() == 0)
+        if(input.length() == 0)
             return 0;
 
-        return 1;
+        String regex = ",";
+        String[] numbers = input.split(regex);
+
+        int sum = 0;
+
+        for(String s : numbers) {
+
+            sum += Integer.parseInt(s);
+        }
+
+        return sum;
     }
 }

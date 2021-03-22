@@ -18,4 +18,21 @@ class StringCalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void testAddOneTwo() {
+
+        int expected = 3;
+        int actual = calculator.add("1,2");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testAddTwo() {
+
+        int expected = 2;
+        int actual = calculator.add("2");
+        assertEquals(expected, actual);
+    }
+
 }
