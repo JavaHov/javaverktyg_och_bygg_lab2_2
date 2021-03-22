@@ -8,7 +8,7 @@ public class StringCalculator {
         if(input.length() == 0)
             return 0;
 
-        String regex = ",";
+        String regex = ",|\n";
         String[] numbers = input.split(regex);
 
         int sum = 0;

@@ -43,4 +43,13 @@ class StringCalculatorTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    void testNewLineDelimiter() {
+
+        int expected = 6;
+        int actual = calculator.add("1,2\n3");
+        assertThat(expected).isEqualTo(actual);
+
+    }
+
 }
