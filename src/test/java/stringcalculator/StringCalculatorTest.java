@@ -85,4 +85,13 @@ class StringCalculatorTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    void testLongerDelimiter() {
+
+
+        int expected = 10;
+        int actual = calculator.add("//[ccccc]\n1,2:3ccccc4");
+        assertThat(actual).isEqualTo(expected);
+    }
+
 }

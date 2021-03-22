@@ -38,6 +38,14 @@ public class StringCalculator {
 
         String[] divide = input.split("\n");
         String regex = divide[0].substring(2);
+        String subRegex = null;
+
+        if(regex.startsWith("[") && regex.endsWith("]")) {
+            subRegex = regex.substring(1, regex.indexOf("]"));
+            String replaced = divide[1].replace(subRegex, ",");
+            return replaced.split(anotherRegex);
+
+        }
 
         String finalRegex = anotherRegex + "|" + regex;
 
