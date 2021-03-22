@@ -3,6 +3,7 @@ package stringcalculator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringCalculatorTest {
@@ -67,6 +68,21 @@ class StringCalculatorTest {
         int actual = calculator.add("//_\n1,2_3:4_5");
         assertThat(expected).isEqualTo(actual);
 
+    }
+
+    @Test
+    void testNegativeThrowsException() {
+
+        assertThatThrownBy(()-> calculator.add("1,-4"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void testNotAddingOverThousand() {
+
+        int expected = 7;
+        int actual = calculator.add("1,2,1001,4");
+        assertThat(actual).isEqualTo(expected);
     }
 
 }

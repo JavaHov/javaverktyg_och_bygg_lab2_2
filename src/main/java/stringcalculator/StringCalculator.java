@@ -8,7 +8,8 @@ public class StringCalculator {
         if(input.length() == 0)
             return 0;
 
-        String defaultRegex = ",|:|\n";
+        //String defaultRegex = ",|:|\n";
+        String defaultRegex = "[-,:\n]";
 
         String[] data;
         int sum = 0;
@@ -23,7 +24,10 @@ public class StringCalculator {
 
         for(String s : data) {
 
-            sum += Integer.parseInt(s);
+            if(Integer.parseInt(s) < 0)
+                throw new IllegalArgumentException("invalid argument");
+            else if(Integer.parseInt(s) <= 1000)
+                sum += Integer.parseInt(s);
         }
 
         return sum;
