@@ -8,16 +8,35 @@ public class StringCalculator {
         if(input.length() == 0)
             return 0;
 
-        String regex = ",|\n";
-        String[] numbers = input.split(regex);
+        String defaultRegex = ",|:|\n";
 
+        String[] data;
         int sum = 0;
 
-        for(String s : numbers) {
+        if(input.startsWith("//")) {
+            data = getDataFromString(input, defaultRegex);
+        }
+        else {
+
+            data = input.split(defaultRegex);
+        }
+
+        for(String s : data) {
 
             sum += Integer.parseInt(s);
         }
 
         return sum;
+
+    }
+
+    private String[] getDataFromString(String input, String anotherRegex) {
+
+        String[] divide = input.split("\n");
+        String regex = divide[0].substring(2);
+
+        String finalRegex = anotherRegex + "|" + regex;
+
+        return divide[1].split(finalRegex);
     }
 }

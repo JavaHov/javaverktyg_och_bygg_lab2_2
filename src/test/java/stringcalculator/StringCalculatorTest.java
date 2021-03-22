@@ -52,4 +52,12 @@ class StringCalculatorTest {
 
     }
 
+    @Test
+    void testDifferentDelimiters() {
+
+        int expected = 6;
+        int actual = calculator.add("//;\n1;2,3");
+        assertThat(actual).isEqualTo(expected);
+    }
+
 }
