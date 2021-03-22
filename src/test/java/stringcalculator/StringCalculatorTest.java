@@ -35,4 +35,12 @@ class StringCalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void addOneTwoThreeFourFive() {
+
+        int expected = 15;
+        int actual = calculator.add("1,2,3,4,5");
+        assertThat(actual).isEqualTo(expected);
+    }
+
 }
