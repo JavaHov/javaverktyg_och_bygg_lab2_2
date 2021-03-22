@@ -60,4 +60,13 @@ class StringCalculatorTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    void moreTestWithDifferent() {
+
+        int expected = 15;
+        int actual = calculator.add("//_\n1,2_3:4_5");
+        assertThat(expected).isEqualTo(actual);
+
+    }
+
 }
