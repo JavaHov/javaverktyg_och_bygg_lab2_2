@@ -1,54 +1,36 @@
 package stringcalculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
 
 
-    public int add(String input) {
+    public int add(String string) {
 
-        if(input.length() == 0)
+
+        if(string.length() == 0)
             return 0;
 
-        //String defaultRegex = ",|:|\n";
-        String defaultRegex = "[-,:\n]";
+        char[] charArray = string.toCharArray();
+        List<Integer> intList = new ArrayList<>();
 
-        String[] data;
-        int sum = 0;
+        for(int i = 0; i < charArray.length; i++) {
 
-        if(input.startsWith("//")) {
-            data = getDataFromString(input, defaultRegex);
+            if(Character.isDigit(charArray[i])) {
+
+                StringBuilder sb = new StringBuilder();
+                while(i < charArray.length && Character.isDigit(charArray[i]) ) {
+
+                    sb.append(charArray[i]);
+                    i++;
+                }
+                int temp = Integer.parseInt(sb.toString());
+                if(temp >= 0 && temp <= 1000)
+                    intList.add(temp);
+            }
         }
-        else {
-
-            data = input.split(defaultRegex);
-        }
-
-        for(String s : data) {
-
-            if(Integer.parseInt(s) < 0)
-                throw new IllegalArgumentException("invalid argument");
-            else if(Integer.parseInt(s) <= 1000)
-                sum += Integer.parseInt(s);
-        }
-
-        return sum;
-
-    }
-
-    private String[] getDataFromString(String input, String anotherRegex) {
-
-        String[] divide = input.split("\n");
-        String regex = divide[0].substring(2);
-        String subRegex = null;
-
-        if(regex.startsWith("[") && regex.endsWith("]")) {
-            subRegex = regex.substring(1, regex.indexOf("]"));
-            String replaced = divide[1].replace(subRegex, ",");
-            return replaced.split(anotherRegex);
-
-        }
-
-        String finalRegex = anotherRegex + "|" + regex;
-
-        return divide[1].split(finalRegex);
+        int result = intList.stream().mapToInt(i -> i).sum();
+        return result;
     }
 }
